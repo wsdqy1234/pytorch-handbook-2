@@ -117,12 +117,12 @@ def test(epoch):
             x_hat, mu, logvar = model(data)
             test_loss += loss_function(x_hat, data, mu, logvar).item()
             # Print Information (Here we only print the first batch)
-            if i == 0:
-                n = min(data.size(0), 8) # n samples shown
-                # Compare x and x_hat
-                comparison = torch.cat([data[:n],
-                    x_hat.view(args.batch_size, 1, 28, 28)[:n]])
-                save_image(comparison.cpu(), './data/results/rec_' + str(epoch) + '.png', nrows=n)
+            # if i == 0:
+            #     n = min(data.size(0), 8) # n samples shown
+            #     # Compare x and x_hat
+            #     comparison = torch.cat([data[:n],
+            #         x_hat.view(args.batch_size, 1, 28, 28)[:n]])
+            #     save_image(comparison.cpu(), './data/results/rec_' + str(epoch) + '.png', nrows=n)
     
     test_loss /= len(test_loader.dataset)
     print("Test Loss:{:.6f}".format(test_loss))
